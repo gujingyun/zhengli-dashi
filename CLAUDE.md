@@ -1,3 +1,7 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # 🎮 整理大师 - Claude Code 项目指南
 
 ## 项目概述
@@ -27,6 +31,35 @@ Assets/
     └── Atlas/       # 图集
 ```
 
+## 代码架构
+
+### 核心类层次
+
+- `TuanjieMonoBehaviour`: 所有组件的基类，提供 `FindChild<T>()` 和 `GetOrAddComponent<T>()` 工具方法
+- `TuanjieSingleton<T>`: 单例基类，继承自 `TuanjieMonoBehaviour`，自动实现 `DontDestroyOnLoad`
+- 命名空间: `ZhengLiMaster` (游戏代码) 和 `TuanjieFramework` (框架代码)
+
+### 核心系统
+
+| 类 | 职责 | 关键方法 |
+|---|---|---|
+| `GameManager` | 游戏状态管理、步数/分数计算、消除逻辑 | `StartGame()`, `StartLevel()`, `EliminateBox()` |
+| `DragManager` | 触摸/鼠标输入处理、射线检测目标盒子 | `StartDrag()`, `Dragging()`, `EndDrag()` |
+| `Item` | 物品数据与拖拽状态 | `OnDragStart()`, `OnDragEnd()`, `ReturnToOriginalPosition()` |
+| `Box` | 收纳盒容量管理、物品槽位布局 | `CanAddItem()`, `AddItem()`, `GetSameTypeCount()` |
+
+### 状态机
+
+`GameState` 枚举: `Waiting` → `Playing` → `Paused`/`LevelComplete`/`GameOver`
+
+### 事件系统
+
+使用 C# `System.Action` 委托进行事件通信:
+- `onMovesChanged(int)` - 步数变化
+- `onScoreChanged(int)` - 分数变化
+- `onLevelComplete()` - 关卡完成
+- `onGameOver()` - 游戏结束
+
 ## 游戏核心功能
 
 1. **拖拽系统** - 单指拖拽，物品跟随手指移动
@@ -47,7 +80,7 @@ Assets/
 
 ## 团结引擎特定
 
-- 使用 `TuanjieEngine` 命名空间
+- 使用 `TuanjieEngine` 命名空间 (别名 `TuanjieFramework`)
 - UI 使用 UGUI 系统
 - 发布使用 Cocos Creator 类似的发布流程
 
