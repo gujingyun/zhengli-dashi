@@ -1,0 +1,77 @@
+# Unity/团结引擎 GitIgnore
+# ==========================================
+
+# Unity
+# ------------------------------------------
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Files starting with . (dot)
+# ------------------------------------------
+/.*
+
+# Don't ignore these files
+!.gitignore
+!.gitattributes
+!.gitmodules
+
+# Visual Studio
+# ------------------------------------------
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# MonoBehaviour
+# ------------------------------------------
+ExportedObj/
+*.mdb
+*.dll
+
+# Package data (optional)
+# ------------------------------------------
+# /Packages/
+
+# Build data (optional)
+# /Builds/
+
+#，团结引擎特有
+# ------------------------------------------
+/Editor/
+/Tuanjie/
+
+# macOS
+# ------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Thumbnails
+# ------------------------------------------
+._*
+
+# VS Code
+# ------------------------------------------
+.vscode/
+
+# IntelliJ
+# ------------------------------------------
+.idea/
+
+# Logs
+# ------------------------------------------
+*.log
+*.tmp
+
+# Cache
+# ------------------------------------------
+*.cache
