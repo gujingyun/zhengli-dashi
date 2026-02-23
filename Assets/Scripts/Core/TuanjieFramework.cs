@@ -33,14 +33,20 @@ namespace TuanjieFramework
             }
             return component;
         }
+    }
 
+    /// <summary>
+    /// GameObject扩展方法
+    /// </summary>
+    public static class GameObjectExtensions
+    {
         /// <summary>
-        /// 设置层级
+        /// 递归设置层级
         /// </summary>
-        protected void SetLayerRecursive(LayerMask layer)
+        public static void SetLayerRecursive(this GameObject obj, LayerMask layer)
         {
-            gameObject.layer = layer;
-            foreach (Transform child in transform)
+            obj.layer = layer;
+            foreach (Transform child in obj.transform)
             {
                 child.gameObject.SetLayerRecursive(layer);
             }

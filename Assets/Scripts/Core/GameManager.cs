@@ -116,6 +116,29 @@ namespace ZhengLiMaster
         }
 
         /// <summary>
+        /// 添加分数
+        /// </summary>
+        public void AddScore(int addScore)
+        {
+            score += addScore;
+            onScoreChanged?.Invoke(score);
+        }
+
+        /// <summary>
+        /// 物品消除回调
+        /// </summary>
+        public void OnItemsEliminated(int itemCount)
+        {
+            eliminatedCount += itemCount;
+
+            // 检查是否通关
+            if (eliminatedCount >= totalItemsCount)
+            {
+                OnLevelComplete();
+            }
+        }
+
+        /// <summary>
         /// 检查消除
         /// </summary>
         private void CheckElimination(Box box)
